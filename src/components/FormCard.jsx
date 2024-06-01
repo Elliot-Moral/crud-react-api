@@ -7,34 +7,40 @@ import { useForm } from "react-hook-form";
 //#npm install react-hook-form
 
 
-const FormCar = ( {createCard, cardSelect, setCardSelect, updateCard} ) => {
+const FormCar = ( {createUser, userSelect, setUserSelect, updateUser} ) => {
 
     // useForm devuelve un objeto.
     const { register, handleSubmit, reset } = useForm();
 
     useEffect(()=>{
-      reset(cardSelect)
-    }, [cardSelect])
+      reset(userSelect)
+    }, [userSelect])
     
     
     function funSubmit(data){
       
-      if(cardSelect){
-        console.log(data)
-        updateCard(cardSelect.id, data)
-        setCardSelect();
+      if(userSelect){
+
+        const obj = {
+          brand:'hola',
+          model: 'como',
+          color: 'vaz',
+          year: 1996,
+          price: '200',
+        }
+
+        updateUser( userSelect.id , data)
+        setUserSelect();
       }else{
-        createCard(data)
+        createUser(data)
       }
 
-
-
         reset({
-          brand:'',
-          model: '',
-          color: '',
-          year: '',
-          price: '',
+          first_name:'',
+          last_name: '',
+          email: '',
+          password: '',
+          birthday: '',
         })
     }
 
@@ -48,24 +54,24 @@ const FormCar = ( {createCard, cardSelect, setCardSelect, updateCard} ) => {
 
       <form onSubmit={handleSubmit(funSubmit)}>
         <label>
-          <span>Brand</span>
-          <input {...register("brand")} type="text" />
+          <span>Firs Name</span>
+          <input {...register("first_name")} type="text" />
         </label>
         <label>
-          <span>Model</span>
-          <input {...register("model")} type="text" />
+          <span>Last Name</span>
+          <input {...register("last_name")} type="text" />
         </label>
         <label>
-          <span>Color</span>
-          <input {...register("color")} type="text" />
+          <span>Email</span>
+          <input {...register("email")} type="text" />
         </label>
         <label>
-          <span>Year</span>
-          <input {...register("year")} type="number" />
+          <span>Password</span>
+          <input {...register("password")} type="password" />
         </label>
         <label>
-          <span>Price</span>
-          <input {...register("price")} type="text" />
+          <span>Birthday</span>
+          <input {...register("birthday")} type="date" />
         </label>
         <button>Submit</button>
       </form>

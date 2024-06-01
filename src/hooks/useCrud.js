@@ -5,7 +5,7 @@ function useCrud(pacth){
 
     const [response, setResponse ] = useState();
     
-    const BASE_URL = "http://cars-crud.academlo.tech/"
+    const BASE_URL = "http://users-crud.academlo.tech/"
 
     //GET
     function getApi(){
@@ -17,13 +17,16 @@ function useCrud(pacth){
     }
 
 
-    //PORT - create nuevo registro
+    //POST - create nuevo registro.
     function postApi(data){
-        const url = `${BASE_URL}${pacth}`;  
+
+        const url = `${BASE_URL}${pacth}`; 
+ 
         axios.post(url, data)
         .then(res=> {
             console.log(res.data)
-            //espreat operatos
+
+            //expreat opereiatos.
             setResponse([...response, res.data])
         })
         .catch(err => console.log(err));
@@ -49,7 +52,7 @@ function useCrud(pacth){
   
     //UPDATE
     function updateApi(id, data){
-        const url = `${BASE_URL}${pacth}${id}`;  
+        const url = `${BASE_URL}${pacth}${id}/`;  
 
         axios.put(url, data)
         .then(res=> {
